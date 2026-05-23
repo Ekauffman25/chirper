@@ -36,6 +36,8 @@
                         <p class="mt-4 text-base-content/60">This is your brand new Laravel application. Time to make it
                             sing (or chirp)!</p>
                     </div>
+                    <p>This is your brand new Laravel app. Time to make it sing (or chirp)!</p>
+                    <p class="mt-2 text-sm text-gray-600">Now this is live on the internet! 🎉</p>
                 </div>
             </div>
         </div>
