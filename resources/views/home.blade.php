@@ -23,7 +23,11 @@
         </div>
     </nav>
 
-    <main class="flex-1 container mx-auto px-4 py-8">
+<main class="flex-1 container mx-auto px-4 py-8">
+<x-layout>
+    <x-slot:title>
+        Home
+    </x-slot:title>
         <div class="max-w-2xl mx-auto">
             <div class="card bg-base-100 shadow mt-8">
                 <div class="card-body">
@@ -35,6 +39,7 @@
                 </div>
             </div>
         </div>
+        <x-layout>
     </main>
 
     <footer class="footer footer-center p-5 bg-base-300 text-base-content text-xs">
