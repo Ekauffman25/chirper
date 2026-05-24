@@ -76,6 +76,7 @@ class ChirpController extends Controller
      */
     public function update(Request $request, string $id)
     {
+            $this->authorize('update', $chirp);
              $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
