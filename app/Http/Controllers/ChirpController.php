@@ -68,7 +68,7 @@ class ChirpController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('chirps.edit', compact('chirp'));
     }
 
     /**
@@ -76,7 +76,14 @@ class ChirpController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+             $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+
+        // Update
+        $chirp->update($validated);
+
+        return redirect('/')->with('success', 'Chirp updated!');
     }
 
     /**
@@ -84,7 +91,9 @@ class ChirpController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $chirp->delete();
+
+        return redirect('/')->with('success', 'Chirp deleted!');
     }
 
 
