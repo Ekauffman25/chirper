@@ -22,13 +22,19 @@
             @endif
 
             <div class="min-w-0">
-                <div class="flex items-center gap-1">
-                    <span class="text-sm font-semibold">{{ $chirp->user ? $chirp->user->name : 'Anonymous' }}</span>
+                <div class="flex items-center gap-1 flex-wrap">
+                    @if($chirp->user)
+                        <a href="{{ route('users.show', $chirp->user) }}" class="text-sm font-semibold link link-hover">{{ $chirp->user->name }}</a>
+                        <span class="text-sm text-base-content/60">@{{ $chirp->user->id }}</span>
+                    @else
+                        <span class="text-sm font-semibold">Anonymous</span>
+                    @endif
+
                     <span class="text-base-content/60">·</span>
                     <span class="text-sm text-base-content/60">{{ $chirp->created_at->diffForHumans() }}</span>
                     @if ($chirp->updated_at->gt($chirp->created_at->addSeconds(5)))
                         <span class="text-base-content/60">.</span>
-                        <span class="text-sm text-base-content/60">edited</span>    
+                        <span class="text-sm text-base-content/60">edited</span>
                     @endif
                 </div>
 

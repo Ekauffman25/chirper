@@ -1,29 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="lofi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chirper - Home</title>
-    <link rel="preconnect" href="<https://fonts.bunny.net>">
-    <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-
-<body class="min-h-screen flex flex-col bg-base-200 font-sans">
-    <nav class="navbar bg-base-100">
-        <div class="navbar-start">
-            <a href="/" class="btn btn-ghost text-xl">🐦 Chirper</a>
-        </div>
-        <div class="navbar-end gap-2">
-            <a href="#" class="btn btn-ghost btn-sm">Sign In</a>
-            <a href="#" class="btn btn-primary btn-sm">Sign Up</a>
-        </div>
-    </nav>
-
-<main class="flex-1 container mx-auto px-4 py-8">
 <x-layout>
     <x-slot:title>
         Home Feed
@@ -34,32 +8,41 @@
 
          <div class="card bg-base-100 shadow mt-8">
             <div class="card-body">
-                <form method="POST" action="/chirps">
-                    @csrf
-                    <div class="form-control w-full">
-                        <textarea
-                            name="message"
-                            placeholder="What's on your mind?"
-                            class="textarea textarea-bordered w-full resize-none"
-                            rows="4"
-                            maxlength="255"
-                            required
-                        >{{ old('message') }}</textarea>
-                     @error('message')
-                    <div class="label">
-                        <span class="label-text-alt text-error">{{ $message }}</span>
-                    </div>
-                        @enderror
-            </div>
+                @auth
+                    <form method="POST" action="/chirps">
+                        @csrf
+                        <div class="form-control w-full">
+                            <textarea
+                                name="message"
+                                placeholder="What's on your mind?"
+                                class="textarea textarea-bordered w-full resize-none"
+                                rows="4"
+                                maxlength="255"
+                                required
+                            >{{ old('message') }}</textarea>
 
-                    </div>
+                            @error('message')
+                                <div class="label">
+                                    <span class="label-text-alt text-error">{{ $message }}</span>
+                                </div>
+                            @enderror
+                        </div>
 
-                    <div class="mt-4 flex items-center justify-end">
-                        <button type="submit" class="btn btn-primary btn-sm">
-                            Chirp
-                        </button>
+                        <div class="mt-4 flex items-center justify-end">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                Chirp
+                            </button>
+                        </div>
+                    </form>
+                @else
+                    <div class="text-center py-12">
+                        <p class="text-base-content/70">Sign in to post your own chirps and follow other users.</p>
+                        <div class="mt-4 flex flex-wrap justify-center gap-2">
+                            <a href="/login" class="btn btn-ghost btn-sm">Sign In</a>
+                            <a href="{{ route('register') }}" class="btn btn-primary btn-sm">Sign Up</a>
+                        </div>
                     </div>
-                </form>
+                @endauth
             </div>
         </div>
 
@@ -81,13 +64,4 @@
         </div>
     </div>
 </x-layout>
-    </main>
 
-    <footer class="footer footer-center p-5 bg-base-300 text-base-content text-xs">
-        <div>
-            <p>© 2025 Chirper - Built with Laravel and ❤️</p>
-        </div>
-    </footer>
-</body>
-
-</html>
