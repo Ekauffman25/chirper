@@ -17,7 +17,7 @@
         </div>
 
         <div class="navbar-center flex-1 px-2">
-            <div class="w-full max-w-xl">
+            <div class="w-full max-w-3xl">
                 <form method="GET" action="{{ route('search.index') }}" data-suggestions-url="{{ route('search.suggestions') }}" class="relative w-full">
                     <input
                         id="search-query"
@@ -25,12 +25,12 @@
                         value="{{ request('query') }}"
                         type="search"
                         placeholder="Search users or chirps"
-                        class="input input-bordered w-full pr-28"
+                        class="input input-bordered w-full pr-28 h-11 bg-base-100/80 placeholder:text-base-content/60 shadow-lg rounded-lg border border-base-300"
                         autocomplete="off"
                     />
                     <button
                         type="submit"
-                        class="btn btn-primary btn-sm absolute right-1 top-1 h-[calc(100%-0.5rem)]"
+                        class="btn btn-primary btn-sm absolute right-2 top-1 h-9"
                     >
                         Search
                     </button>

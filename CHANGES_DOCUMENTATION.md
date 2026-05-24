@@ -153,6 +153,50 @@ The search functionality is **now fully working**. Here's what's in place:
    - Chirp content (keywords inside messages)
 
 ---
+## Issue 4: Search Bar Styling (Length & Shade)
+
+### Problem
+The search bar blended into the navbar and was not visually prominent enough.
+
+### Goal
+Make the search input longer and give it a subtle shaded background and shadow so it stands out in the navbar.
+
+### Solution
+**File**: [resources/views/components/layout.blade.php](resources/views/components/layout.blade.php)
+
+Changes made:
+
+- Increased the maximum width wrapper from `max-w-xl` to `max-w-3xl` so the input can expand on larger screens.
+- Updated the input classes to add height, rounded corners, subtle background, border and shadow.
+
+**Before**:
+```blade
+<div class="w-full max-w-xl">
+   <form ... class="relative w-full">
+      <input id="search-query" class="input input-bordered w-full pr-28" />
+      <div id="search-suggestions"></div>
+   </form>
+   <div class="mt-1 text-xs text-base-content/60">Help text</div>
+</div>
+```
+
+**After**:
+```blade
+<div class="w-full max-w-3xl">
+   <form ... class="relative w-full">
+      <input id="search-query" class="input input-bordered w-full pr-28 h-11 bg-base-100/80 placeholder:text-base-content/60 shadow-lg rounded-lg border border-base-300" />
+      <div id="search-suggestions"></div>
+   </form>
+   <div class="mt-1 text-xs text-base-content/60">Help text</div>
+</div>
+```
+
+### Result
+- The search input is visually larger and more prominent on desktop widths.
+- The shaded background and shadow make it stand out against the navbar.
+- Suggestions still appear in the dropdown and the input remains fully interactive.
+
+---
 
 ## Code Quality
 
