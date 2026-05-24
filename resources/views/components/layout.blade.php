@@ -17,30 +17,31 @@
         </div>
 
         <div class="navbar-center flex-1 px-2">
-            <form method="GET" action="{{ route('search.index') }}" data-suggestions-url="{{ route('search.suggestions') }}" class="relative w-full max-w-xl">
-                <input
-                    id="search-query"
-                    name="query"
-                    value="{{ request('query') }}"
-                    type="search"
-                    placeholder="Search users or chirps"
-                    class="input input-bordered w-full pr-28"
-                    autocomplete="off"
-                />
-                <button
-                    type="submit"
-                    class="btn btn-primary btn-sm absolute right-1 top-1 h-[calc(100%-0.5rem)]"
-                >
-                    Search
-                </button>
+            <div class="w-full max-w-xl">
+                <form method="GET" action="{{ route('search.index') }}" data-suggestions-url="{{ route('search.suggestions') }}" class="relative w-full">
+                    <input
+                        id="search-query"
+                        name="query"
+                        value="{{ request('query') }}"
+                        type="search"
+                        placeholder="Search users or chirps"
+                        class="input input-bordered w-full pr-28"
+                        autocomplete="off"
+                    />
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-sm absolute right-1 top-1 h-[calc(100%-0.5rem)]"
+                    >
+                        Search
+                    </button>
 
+                    <div
+                        id="search-suggestions"
+                        class="hidden absolute left-0 right-0 z-50 mt-1 rounded-box border border-base-200 bg-base-100 shadow-lg overflow-hidden"
+                    ></div>
+                </form>
                 <div class="mt-1 text-xs text-base-content/60">Search by user name, user ID, or keywords inside chirps.</div>
-
-                <div
-                    id="search-suggestions"
-                    class="hidden absolute left-0 right-0 z-50 mt-1 rounded-box border border-base-200 bg-base-100 shadow-lg overflow-hidden"
-                ></div>
-            </form>
+            </div>
         </div>
 
         <div class="navbar-end gap-2">

@@ -20,8 +20,6 @@ class ChirpController extends Controller
         return view('home', ['chirps' => $chirps]);
     }
 
-
-
     /**
      * Show the form for creating a new resource.
      */
@@ -35,17 +33,17 @@ class ChirpController extends Controller
      */
     public function store(Request $request)
     {
-    // Validate the request
-    $validated = $request->validate([
-        'message' => 'required|string|max:255',
-    ]);
+        // Validate the request
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
 
-    // Create the chirp (no user for now - we'll add auth later)
-    auth()->user()->chirps()->create($validated);
+        // Create the chirp (no user for now - we'll add auth later)
+        auth()->user()->chirps()->create($validated);
 
-    // Redirect back to the feed
-    return redirect('/')->with('success', 'Your chirp has been posted!');
-    }   
+        // Redirect back to the feed
+        return redirect('/')->with('success', 'Your chirp has been posted!');
+    }
 
     /**
      * Display the specified resource.
@@ -60,7 +58,7 @@ class ChirpController extends Controller
      */
     public function edit(Chirp $chirp)
     {
-        $this->authorize('update', $chirp);
+        authorize('update', $chirp);
 
         return view('chirps.edit', compact('chirp'));
     }
@@ -70,7 +68,7 @@ class ChirpController extends Controller
      */
     public function update(Request $request, Chirp $chirp)
     {
-        $this->authorize('update', $chirp);
+        authorize('update', $chirp);
         $validated = $request->validate([
             'message' => 'required|string|max:255',
         ]);
@@ -86,12 +84,10 @@ class ChirpController extends Controller
      */
     public function destroy(Chirp $chirp)
     {
-        $this->authorize('delete', $chirp);
+        authorize('delete', $chirp);
 
         $chirp->delete();
 
         return redirect('/')->with('success', 'Chirp deleted!');
     }
-
-
 }
